@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony Store{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-4">
+            <div class="list-group">
+                <a href="{{ path('app_index') }}" class="list-group-item list-group-item-action active">All categories</a>
+                {% for item in category %}
+                <a href="{{ path('category', {'slug' : item.slug}) }}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2">
+                {% for item in product %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                            <div class="card-body">
+                                <h2 class="card-title">{{ item.title }}</h2>
+                                <p class="card-text">{{ item.description }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ path('product_detail', {'slug' : item.slug}) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                                    </div>
+                                    <small class="text-muted">{{ item.price }} $</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
